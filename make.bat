@@ -12,6 +12,10 @@ if "%2"=="x64" (
   set CFG=amd64
   GOTO VALID
 )
+if "%2"=="x86" (
+  set CFG=amd64_x86
+  GOTO VALID
+)
 if "%2"=="x64_uwp" (
   set CFG=amd64 uwp
   GOTO VALID

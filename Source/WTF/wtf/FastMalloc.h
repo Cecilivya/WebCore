@@ -27,7 +27,7 @@
 namespace WTF {
 
 #if !defined(NDEBUG)
-WTF_EXPORT_PRIVATE void fastSetMaxSingleAllocationSize(size_t);
+WTF_EXPORT_DECLARATION void fastSetMaxSingleAllocationSize(size_t);
 #endif
 
 class TryMallocReturnValue {
@@ -41,46 +41,46 @@ private:
     mutable void* m_data;
 };
 
-WTF_EXPORT_PRIVATE bool isFastMallocEnabled();
+WTF_EXPORT_DECLARATION bool isFastMallocEnabled();
 
 // These functions call CRASH() if an allocation fails.
-WTF_EXPORT_PRIVATE void* fastMalloc(size_t) RETURNS_NONNULL;
-WTF_EXPORT_PRIVATE void* fastZeroedMalloc(size_t) RETURNS_NONNULL;
-WTF_EXPORT_PRIVATE void* fastCalloc(size_t numElements, size_t elementSize) RETURNS_NONNULL;
-WTF_EXPORT_PRIVATE void* fastRealloc(void*, size_t) RETURNS_NONNULL;
-WTF_EXPORT_PRIVATE char* fastStrDup(const char*) RETURNS_NONNULL;
+WTF_EXPORT_DECLARATION void* fastMalloc(size_t) RETURNS_NONNULL;
+WTF_EXPORT_DECLARATION void* fastZeroedMalloc(size_t) RETURNS_NONNULL;
+WTF_EXPORT_DECLARATION void* fastCalloc(size_t numElements, size_t elementSize) RETURNS_NONNULL;
+WTF_EXPORT_DECLARATION void* fastRealloc(void*, size_t) RETURNS_NONNULL;
+WTF_EXPORT_DECLARATION char* fastStrDup(const char*) RETURNS_NONNULL;
 
-WTF_EXPORT_PRIVATE TryMallocReturnValue tryFastMalloc(size_t);
-WTF_EXPORT_PRIVATE TryMallocReturnValue tryFastZeroedMalloc(size_t);
-WTF_EXPORT_PRIVATE TryMallocReturnValue tryFastCalloc(size_t numElements, size_t elementSize);
-WTF_EXPORT_PRIVATE TryMallocReturnValue tryFastRealloc(void*, size_t);
+WTF_EXPORT_DECLARATION TryMallocReturnValue tryFastMalloc(size_t);
+WTF_EXPORT_DECLARATION TryMallocReturnValue tryFastZeroedMalloc(size_t);
+WTF_EXPORT_DECLARATION TryMallocReturnValue tryFastCalloc(size_t numElements, size_t elementSize);
+WTF_EXPORT_DECLARATION TryMallocReturnValue tryFastRealloc(void*, size_t);
 
-WTF_EXPORT_PRIVATE void fastFree(void*);
+WTF_EXPORT_DECLARATION void fastFree(void*);
 
 // Allocations from fastAlignedMalloc() must be freed using fastAlignedFree().
-WTF_EXPORT_PRIVATE void* fastAlignedMalloc(size_t alignment, size_t) RETURNS_NONNULL;
-WTF_EXPORT_PRIVATE void* tryFastAlignedMalloc(size_t alignment, size_t);
-WTF_EXPORT_PRIVATE void fastAlignedFree(void*);
+WTF_EXPORT_DECLARATION void* fastAlignedMalloc(size_t alignment, size_t) RETURNS_NONNULL;
+WTF_EXPORT_DECLARATION void* tryFastAlignedMalloc(size_t alignment, size_t);
+WTF_EXPORT_DECLARATION void fastAlignedFree(void*);
 
-WTF_EXPORT_PRIVATE size_t fastMallocSize(const void*);
+WTF_EXPORT_DECLARATION size_t fastMallocSize(const void*);
 
 // FIXME: This is non-helpful; fastMallocGoodSize will be removed soon.
-WTF_EXPORT_PRIVATE size_t fastMallocGoodSize(size_t);
+WTF_EXPORT_DECLARATION size_t fastMallocGoodSize(size_t);
 
-WTF_EXPORT_PRIVATE void releaseFastMallocFreeMemory();
-WTF_EXPORT_PRIVATE void releaseFastMallocFreeMemoryForThisThread();
+WTF_EXPORT_DECLARATION void releaseFastMallocFreeMemory();
+WTF_EXPORT_DECLARATION void releaseFastMallocFreeMemoryForThisThread();
 
-WTF_EXPORT_PRIVATE void fastCommitAlignedMemory(void*, size_t);
-WTF_EXPORT_PRIVATE void fastDecommitAlignedMemory(void*, size_t);
+WTF_EXPORT_DECLARATION void fastCommitAlignedMemory(void*, size_t);
+WTF_EXPORT_DECLARATION void fastDecommitAlignedMemory(void*, size_t);
 
-WTF_EXPORT_PRIVATE void fastEnableMiniMode();
+WTF_EXPORT_DECLARATION void fastEnableMiniMode();
 
 struct FastMallocStatistics {
     size_t reservedVMBytes;
     size_t committedVMBytes;
     size_t freeListBytes;
 };
-WTF_EXPORT_PRIVATE FastMallocStatistics fastMallocStatistics();
+WTF_EXPORT_DECLARATION FastMallocStatistics fastMallocStatistics();
 
 // This defines a type which holds an unsigned integer and is the same
 // size as the minimally aligned memory allocation.

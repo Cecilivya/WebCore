@@ -34,6 +34,7 @@
 
 namespace WebCore {
 
+/*
 struct SameSizeAsFontCascadeDescription {
     Vector<void*> vector;
 #if ENABLE(VARIATION_FONTS)
@@ -52,6 +53,10 @@ struct SameSizeAsFontCascadeDescription {
 };
 
 COMPILE_ASSERT(sizeof(FontCascadeDescription) == sizeof(SameSizeAsFontCascadeDescription), FontCascadeDescription_should_stay_small);
+
+* FIXME!
+* 52 vs 56 bytes
+*/
 
 FontCascadeDescription::FontCascadeDescription()
     : m_isAbsoluteSize(false)
