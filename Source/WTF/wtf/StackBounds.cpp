@@ -179,8 +179,8 @@ StackBounds StackBounds::currentThreadStackBoundsInternal()
     {
         // Try to get the GetCurrentThreadStackLimits from the kernel DLL, this will return
         // nullptr on Windows 7, but the function on Windows 8 and higher.
-        GetCurrentThreadStackLimitsFN = reinterpret_cast<GetCurrentThreadStackLimitsFN_T>(
-            GetProcAddress(GetModuleHandleW(L"kernel32"), "GetCurrentThreadStackLimits"));
+        //GetCurrentThreadStackLimitsFN = reinterpret_cast<GetCurrentThreadStackLimitsFN_T>(
+        //    GetProcAddress(GetModuleHandleW(L"kernel32"), "GetCurrentThreadStackLimits"));
 
         if(!GetCurrentThreadStackLimitsFN)
         {
