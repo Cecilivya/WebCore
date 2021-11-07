@@ -23,8 +23,6 @@ if "%2"=="x64_uwp" (
 GOTO SYNTAX
 :VALID
 
-set "DIRNAME=build_%1_%2"
-
 if "%1"=="vs" (
   set "FLAGS=-G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 )
@@ -81,35 +79,26 @@ if not "%3" == "" (
 
 if %STATIC_BUILD%==1 (
   echo Building static library.
-  set "DIRNAME=%DIRNAME%_static"
-) else (
-  set "DIRNAME=%DIRNAME%_dll"
-)
+) 
 set "FLAGS=%FLAGS% -DSTATIC_BUILD=%STATIC_BUILD%"
 
 if %STATIC_CRT%==1 (
   echo Building with static CRT
-  set "DIRNAME=%DIRNAME%_MT"
-) else (
-  set "DIRNAME=%DIRNAME%_MD"
-)
+) 
 set "FLAGS=%FLAGS% -DSTATIC_CRT=%STATIC_CRT%"
 
 if %DEBUG_CRT%==1 (
   echo Building with debug CRT
-  set "DIRNAME=%DIRNAME%d"
 )
 set "FLAGS=%FLAGS% -DDEBUG_CRT=%DEBUG_CRT%"
 
 if %PROFILER%==1 (
   echo Enabling Tracy Profiler
   set "FLAGS=%FLAGS% -DENABLE_PROFILER=1"
-  set "DIRNAME=%DIRNAME%_profile"
 )
 
 if %USE_LOCAL_DEPS%==1 (
   echo Using local dependencies.
-  set "DIRNAME=%DIRNAME%_local"
 ) else (
   echo Fetching dependencies from remote server.
 )
@@ -117,12 +106,12 @@ set "FLAGS=%FLAGS% -DUSE_LOCAL_DEPS=%USE_LOCAL_DEPS%"
 
 if %NO_JIT%==1 (
   echo Disabling JavaScriptCore JIT.
-  set "DIRNAME=%DIRNAME%_no_jit"
 ) else (
   echo Enabling JavaScriptCore JIT.
 )
 set "FLAGS=%FLAGS% -DNO_JIT=%NO_JIT%"
 
+set "DIRNAME=buildDir"
 call "%VCVARS%" %CFG%
 if not exist %DIRNAME% mkdir %DIRNAME%
 cd %DIRNAME%
